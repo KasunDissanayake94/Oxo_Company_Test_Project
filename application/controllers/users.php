@@ -90,4 +90,12 @@ class Users extends CI_Controller {
 		}
 
 	}
+
+
+	public function logout(){
+		//destroy the session
+		$this->session->sess_destroy();
+		redirect('Welcome/index');
+	}
+
 }
