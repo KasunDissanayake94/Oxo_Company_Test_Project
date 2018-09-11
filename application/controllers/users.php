@@ -13,37 +13,36 @@ class Users extends CI_Controller {
 
 	public function login(){
 		
-		$this->form_validation->set_rules('email','Email','required');
-		$this->form_validation->set_rules('password','Password','required');
-
-		if($this->form_validation->run()== FALSE){
-			
-			// redirect('users/index');
-			echo 'invalid';
-		}
-		else{
-			$email = $this->input->post('email');
-			$password = $this->input->post('password');
+		
+		
+	
+			$email = $_POST['email'];
+			$password = $_POST['password'];
 
 			$this->load->model('user_model');
 			$user_id = $this->user_model->login_user($email,$password);
 			
 			if($user_id){
 			
-			
-				// if logged in, show the view 
-					
-				// $this->load->view('home',$user_data);
-				echo 'all ok';
+				$user_data = array(
+						'user_id' => $user_id,
+						'email' => $email,
+						'logged_in' => true
+					);
 
-				 // redirect('home/index');
+					$this->session->set_userdata($user_data);
+					$this->session->set_flashdata('login_success','you are now logged in');
+
+					// if logged in, show the view 
+					
+					$this->load->view('home',$user_data);
 			}else{
 				
-				// redirect('users/index');
-				echo 'no perwon in db';
+				$this->session->set_flashdata('login_failed','Email or Password is incorrect... Try again..');
+				redirect('Welcome/login');
 			}
 		
-		}
+		
 
 
 
