@@ -40,90 +40,65 @@ $this->load->view('navbar');
                     <i class="fas fa-chart-area"></i>
                     User Registration Form</div>
                 <div class="card-body">
-                    <?php $attribute= array('id'=>'login_form', 'class'=>'form_horizontal');?>
-
-
-                    <?php echo form_open('users/register',$attribute); ?>
-                    <div class="form-group">
-                        <?php echo form_label('First Name'); ?>
-                        <?php
-                        $data = array(
-                            'class' =>'form-control',
-                            'name' =>'firstname',
-                            'placeholder' =>'Enter Your First Name here',
-                        );
-                        ?>
-                        <?php echo form_input($data); ?>
-                    </div>
-                    <div class="form-group">
-                        <?php echo form_label('Last Name'); ?>
-                        <?php
-                        $data = array(
-                            'class' =>'form-control',
-                            'name' =>'lastname',
-                            'placeholder' =>'Enter your Last Name here',
-                        );
-                        ?>
-                        <?php echo form_input($data); ?>
-                    </div>
-                    <div class="form-group">
-                        <?php echo form_label('Email'); ?>
-                        <?php
-                        $data = array(
-                            'class' =>'form-control',
-                            'name' =>'email',
-                            'placeholder' =>'Enter your Email here',
-                            'type' => 'email'
-                        );
-                        ?>
-                        <?php echo form_input($data); ?>
-                    </div>
-
-
-
-                    <div class="form-group">
-                        <?php echo form_label('Password'); ?>
-                        <?php
-                        $data = array(
-                            'class' =>'form-control',
-                            'name' =>'password',
-                            'placeholder' =>'Enter your Password here',
-                            'type'=>'password'
-                        );
-                        ?>
-                        <?php echo form_input($data); ?>
-                    </div>
-                    <div class="form-group">
-                        <?php echo form_label('Confirm Password'); ?>
-                        <?php
-                        $data = array(
-                            'class' =>'form-control',
-                            'name' =>'confirmpassword',
-                            'placeholder' =>'ReEnter your Password here',
-                            'type'=>'password'
-                        );
-                        ?>
-                        <?php echo form_input($data); ?>
-                    </div>
+                    <form>
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="form-label-group">
+                                        <input type="text" id="firstName" class="form-control" placeholder="First name" required="required" autofocus="autofocus">
+                                        <label for="firstName">First name</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-label-group">
+                                        <input type="text" id="lastName" class="form-control" placeholder="Last name" required="required">
+                                        <label for="lastName">Last name</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-label-group">
+                                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required">
+                                <label for="inputEmail">Email address</label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="form-label-group">
+                                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
+                                        <label for="inputPassword">Password</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-label-group">
+                                        <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm password" required="required">
+                                        <label for="confirmPassword">Confirm password</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Upload Image</label>
+                                        <div class="input-group">
+            <span class="input-group-btn">
+                <span class="btn btn-info btn-file">
+                    Browse…  <input type="file" id="imgInp">
+                </span>
+            </span>
+                                            <input type="text" class="form-control" readonly>
+                                        </div>
+                                        <img id='img-upload'/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="btn btn-primary btn-block" href="login.html">Register</a>
+                    </form>
 
 
 
-                    <div class="form-group">
 
-                        <?php
-                        $data = array(
-                            'class' =>'btn btn-primary',
-                            'name' =>'submit',
-                            'value' =>'Register'
-
-                        );
-                        ?>
-                        <?php echo form_submit($data); ?>
-                    </div>
-
-
-
-                    <?php	echo form_close(); ?>
                 </div>
             </div>
 
@@ -186,6 +161,7 @@ $this->load->view('navbar');
 <!-- Demo scripts for this page-->
 <script src="<?php echo base_url();?>assets/assets1/js/demo/datatables-demo.js"></script>
 <script src="<?php echo base_url();?>assets/assets1/js/demo/chart-area-demo.js"></script>
+<script src="<?php echo base_url();?>assets/assets1/js/demo/image.js"></script>
 
 </body>
 

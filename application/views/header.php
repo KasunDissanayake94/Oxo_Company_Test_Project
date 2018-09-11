@@ -23,4 +23,6 @@
     <!-- Custom styles for this template-->
     <link href="<?php echo base_url();?>assets/assets1/css/sb-admin.css" rel="stylesheet">
 
+    <link href="<?php echo base_url();?>assets/assets1/css/image.css" rel="stylesheet">
+
 </head>
