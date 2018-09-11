@@ -67,6 +67,24 @@ $this->load->view('navbar');
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="form-label-group">
+                                        <select id="inputState" class="form-control">
+                                            <option selected>Choose...</option>
+                                            <option>...</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-label-group">
+                                        <input type="text" id="contactnumber" class="form-control" placeholder="Contact Number" required="required">
+                                        <label for="contactnumber">Contact Number</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-6">
+                                    <div class="form-label-group">
                                         <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
                                         <label for="inputPassword">Password</label>
                                     </div>
@@ -81,11 +99,11 @@ $this->load->view('navbar');
                                     <div class="form-group">
                                         <label>Upload Image</label>
                                         <div class="input-group">
-            <span class="input-group-btn">
-                <span class="btn btn-info btn-file">
-                    Browse…  <input type="file" id="imgInp">
-                </span>
-            </span>
+                                            <span class="input-group-btn">
+                                                <span class="btn btn-info btn-file">
+                                                    Browse…  <input type="file" id="imgInp">
+                                                </span>
+                                            </span>
                                             <input type="text" class="form-control" readonly>
                                         </div>
                                         <img id='img-upload'/>
@@ -95,15 +113,8 @@ $this->load->view('navbar');
                         </div>
                         <a class="btn btn-primary btn-block" href="login.html">Register</a>
                     </form>
-
-
-
-
                 </div>
             </div>
-
-
-
         </div>
         <!-- /.container-fluid -->
 
