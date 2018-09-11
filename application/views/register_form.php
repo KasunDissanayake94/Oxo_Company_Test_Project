@@ -75,7 +75,7 @@
 		<?php
 			$data = array(
 				'class' =>'form-control',
-				'name' =>'password',
+				'name' =>'confirmpassword',
 				'placeholder' =>'ReEnter your Password here',
 				'type'=>'password'
 			);
