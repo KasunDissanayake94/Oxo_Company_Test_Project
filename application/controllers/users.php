@@ -20,7 +20,7 @@ class Users extends CI_Controller {
 			$this->load->model('user_model');
 			$user_id = $this->user_model->login_user($email,$password);
 
-			if($user_id){		
+			if($user_id){
 				$user_data = array(
 						'user_id' => $user_id,
 						'email' => $email,
@@ -32,15 +32,15 @@ class Users extends CI_Controller {
 					$this->load->view('home',$user_data);
 			}else{
 
-				
+
 				$this->session->set_flashdata('login_failed','Email or Password is incorrect... Try again..');
 				redirect('Welcome/login');
 			}
-		
+
 	}
 
-			
-	
+
+
 	//User Registration
 
 	public function register(){
@@ -69,20 +69,22 @@ class Users extends CI_Controller {
 			$user_id = $this->user_model->login_user($email,$password);
 
 			if($user_id){
+				$user_data = array(
+						'user_id' => $user_id,
+						'email' => $email,
+						'logged_in' => true
+				);
 
-				// if logged in, show the view
-
-				// $this->load->view('home',$user_data);
-				echo 'all ok';
-
-				 // redirect('home/index');
+					$this->session->set_userdata($user_data);
+					$this->session->set_flashdata('login_success','you are now logged in');
+					$this->load->view('home',$user_data);
 			}else{
 
-				// redirect('users/index');
-				echo 'no perwon in db';
+				
+				$this->session->set_flashdata('','Failed to Register User.Try again..');
+				redirect('Welcome/Register');
 			}
 
-			//User Registration
 
 
 		}
