@@ -14,14 +14,14 @@ class Users extends CI_Controller {
 
 
 	public function login(){
-<<<<<<< HEAD
+
 		
 		
 		
 	
 			$email = $_POST['email'];
 			$password = $_POST['password'];
-=======
+
 
 		$this->form_validation->set_rules('email','Email','required');
 		$this->form_validation->set_rules('password','Password','required');
@@ -34,13 +34,13 @@ class Users extends CI_Controller {
 		else{
 			$email = $this->input->post('email');
 			$password = $this->input->post('password');
->>>>>>> 0e994602abb61c39079aaa732848b08c07431b14
+
 
 			$this->load->model('user_model');
 			$user_id = $this->user_model->login_user($email,$password);
 
 			if($user_id){
-<<<<<<< HEAD
+
 			
 				$user_data = array(
 						'user_id' => $user_id,
@@ -50,33 +50,32 @@ class Users extends CI_Controller {
 
 					$this->session->set_userdata($user_data);
 					$this->session->set_flashdata('login_success','you are now logged in');
-=======
+
 
 
 				// if logged in, show the view
 
 				// $this->load->view('home',$user_data);
 				echo 'all ok';
->>>>>>> 0e994602abb61c39079aaa732848b08c07431b14
+
 
 					// if logged in, show the view 
 					
 					$this->load->view('home',$user_data);
 			}else{
-<<<<<<< HEAD
+
 				
 				$this->session->set_flashdata('login_failed','Email or Password is incorrect... Try again..');
 				redirect('Welcome/login');
 			}
 		
 		
-=======
 
 				// redirect('users/index');
 				echo 'no perwon in db';
 			}
 		}
-	}
+	
 	//User Registration
 
 	public function register(){
@@ -99,7 +98,7 @@ class Users extends CI_Controller {
 			$email = $this->input->post('email');
 			$password = $this->input->post('password');
 			$confirm_password = $this->input->post('confirmpassword');
->>>>>>> 0e994602abb61c39079aaa732848b08c07431b14
+
 
 			$this->load->model('user_model');
 			$user_id = $this->user_model->login_user($email,$password);
