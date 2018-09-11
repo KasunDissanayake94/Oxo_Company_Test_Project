@@ -33,7 +33,7 @@
             <span>Tables</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="<?php echo base_url();?>index.php/adminController/userRegistration">
             <i class="fas fa-id-card"></i>
             <span>User Registration</span></a>
     </li>
