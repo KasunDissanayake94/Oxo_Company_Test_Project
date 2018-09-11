@@ -47,7 +47,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">Signup</a>
             </li>
             <li class="nav-item mx-0 mx-lg-1">
-              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#contact">Signin</a>
+              <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="<?php echo base_url();?>users/index">Signin</a>
             </li>
           </ul>
         </div>
