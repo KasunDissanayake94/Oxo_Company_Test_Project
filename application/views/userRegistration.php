@@ -40,18 +40,27 @@ $this->load->view('navbar');
                     <i class="fas fa-chart-area"></i>
                     User Registration Form</div>
                 <div class="card-body">
-                    <form>
+                    <form action="<?php echo base_url();?>adminController/registerUser" method="POST">
+                        <div class="alert alert-success" role="alert">
+                            <?php if($this->session->flashdata('register_success')):  ?>
+                                <?php echo $this->session->flashdata('register_success');?>
+                            <?php endif;?>
+                            <?php if($this->session->flashdata('register_failed')):  ?>
+                                <?php echo $this->session->flashdata('register_failed');?>
+                            <?php endif;?>
+                        </div>
+
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="form-label-group">
-                                        <input type="text" id="firstName" class="form-control" placeholder="First name" required="required" autofocus="autofocus">
+                                        <input type="text" id="firstName" name="firstname" class="form-control" placeholder="First name" required="required" autofocus="autofocus">
                                         <label for="firstName">First name</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-label-group">
-                                        <input type="text" id="lastName" class="form-control" placeholder="Last name" required="required">
+                                        <input type="text" id="lastName" name="lastname" class="form-control" placeholder="Last name" required="required">
                                         <label for="lastName">Last name</label>
                                     </div>
                                 </div>
@@ -59,7 +68,7 @@ $this->load->view('navbar');
                         </div>
                         <div class="form-group">
                             <div class="form-label-group">
-                                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required">
+                                <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required="required">
                                 <label for="inputEmail">Email address</label>
                             </div>
                         </div>
@@ -67,15 +76,24 @@ $this->load->view('navbar');
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="form-label-group">
-                                        <select id="inputState" class="form-control">
-                                            <option selected>Choose...</option>
-                                            <option>...</option>
+                                        <select id="inputState" name="type" class="form-control">
+                                            <option selected>Select a User type...</option>
+                                            <option>Admin</option>
+                                            <option>Coordinator</option>
+                                            <option>School Admin</option>
+                                            <option>Principal</option>
+                                            <option>Vice Principal</option>
+                                            <option>Head Prefect</option>
+                                            <option>Dep.Head Prefect</option>
+                                            <option>Teacher</option>
+                                            <option>Teacher</option>
+                                            <option>Student</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-label-group">
-                                        <input type="text" id="contactnumber" class="form-control" placeholder="Contact Number" required="required">
+                                        <input type="text" name="contactnumber" id="contactnumber" class="form-control" placeholder="Contact Number" required="required">
                                         <label for="contactnumber">Contact Number</label>
                                     </div>
                                 </div>
@@ -85,13 +103,13 @@ $this->load->view('navbar');
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="form-label-group">
-                                        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
+                                        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
                                         <label for="inputPassword">Password</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-label-group">
-                                        <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm password" required="required">
+                                        <input type="password" name="confirmpassword" id="confirmPassword" class="form-control" placeholder="Confirm password" required="required">
                                         <label for="confirmPassword">Confirm password</label>
                                     </div>
                                 </div>
@@ -101,7 +119,7 @@ $this->load->view('navbar');
                                         <div class="input-group">
                                             <span class="input-group-btn">
                                                 <span class="btn btn-info btn-file">
-                                                    Browse…  <input type="file" id="imgInp">
+                                                    Browse…  <input type="file" id="imgInp" name="imageurl">
                                                 </span>
                                             </span>
                                             <input type="text" class="form-control" readonly>
@@ -111,7 +129,7 @@ $this->load->view('navbar');
                                 </div>
                             </div>
                         </div>
-                        <a class="btn btn-primary btn-block" href="login.html">Register</a>
+                        <button class="btn btn-primary btn-block" type="submit">Register User</button>
                     </form>
                 </div>
             </div>
