@@ -119,7 +119,8 @@ $this->load->view('navbar');
                                         <div class="input-group">
                                             <span class="input-group-btn">
                                                 <span class="btn btn-info btn-file">
-                                                    Browse…  <input type="file" id="imgInp" name="imageurl">
+                                                    Browse…  <?php echo form_open_multipart('upload/do_upload');?>
+                                                    <input type="file" id="imgInp" name="imageurl">
                                                 </span>
                                             </span>
                                             <input type="text" class="form-control" readonly>
