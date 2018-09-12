@@ -174,6 +174,13 @@ $this->load->view('navbar');
 
 <!-- Bootstrap core JavaScript-->
 <script src="<?php echo base_url();?>assets/assets1/vendor/jquery/jquery.min.js"></script>
+<script>
+    window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+            $(this).remove();
+        });
+    }, 4000);
+</script>
 <script src="<?php echo base_url();?>assets/assets1/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 <!-- Core plugin JavaScript-->

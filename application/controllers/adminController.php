@@ -28,7 +28,7 @@ class adminController extends CI_Controller {
             $email = $this->input->post('email');
             $type = $this->input->post('type');
             $contact_number = $this->input->post('contactnumber');
-            $password = $this->input->post('password');
+            $password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
             $image_url = $this->input->post('imageurl');
 
 
