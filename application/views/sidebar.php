@@ -6,22 +6,7 @@
             <span>Dashboard</span>
         </a>
     </li>
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Pages</span>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-            <h6 class="dropdown-header">Login Screens:</h6>
-            <a class="dropdown-item" href="login.html">Login</a>
-            <a class="dropdown-item" href="register.html">Register</a>
-            <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
-            <div class="dropdown-divider"></div>
-            <h6 class="dropdown-header">Other Pages:</h6>
-            <a class="dropdown-item" href="404.html">404 Page</a>
-            <a class="dropdown-item" href="blank.html">Blank Page</a>
-        </div>
-    </li>
+
 
     <li class="nav-item">
         <a class="nav-link" href="<?php echo base_url();?>index.php/adminController/userRegistration">
@@ -29,14 +14,9 @@
             <span>User Registration</span></a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url();?>index.php/adminController/userRegistration">
+        <a class="nav-link" href="<?php echo base_url();?>index.php/adminController/userView">
             <i class="fas fa-edit"></i>
-            <span>Edit User Details</span></a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url();?>index.php/adminController/userRegistration">
-            <i class="fas fa-trash-alt"></i>
-            <span>Delete User</span></a>
+            <span>Manage Users</span></a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="<?php echo base_url();?>index.php/adminController/userRegistration">
@@ -44,8 +24,13 @@
             <span>View School Profile</span></a>
     </li>
     <li class="nav-item">
+        <a class="nav-link" href="<?php echo base_url();?>index.php/adminController/importUsers">
+            <i class="fas fa-school"></i>
+            <span>Import Users </span></a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link" href="<?php echo base_url();?>index.php/adminController/userRegistration">
             <i class="fas fa-id-card"></i>
-            <span>User View User Details</span></a>
+            <span>View Log</span></a>
     </li>
 </ul>

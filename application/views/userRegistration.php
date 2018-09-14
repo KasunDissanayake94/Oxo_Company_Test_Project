@@ -41,97 +41,116 @@ $this->load->view('navbar');
                     User Registration Form</div>
                 <div class="card-body">
                     <form action="<?php echo base_url();?>adminController/registerUser" method="POST">
-                        <div class="alert alert-success" role="alert">
-                            <?php if($this->session->flashdata('register_success')):  ?>
-                                <?php echo $this->session->flashdata('register_success');?>
-                            <?php endif;?>
-                            <?php if($this->session->flashdata('register_failed')):  ?>
-                                <?php echo $this->session->flashdata('register_failed');?>
-                            <?php endif;?>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="form-row">
-                                <div class="col-md-6">
-                                    <div class="form-label-group">
-                                        <input type="text" id="firstName" name="firstname" class="form-control" placeholder="First name" required="required" autofocus="autofocus">
-                                        <label for="firstName">First name</label>
-                                    </div>
+                            <?php if($this->session->flashdata('register_success')):  ?>
+                                <div class="alert alert-success" role="alert">
+                                    <?php echo $this->session->flashdata('register_success');?>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-label-group">
-                                        <input type="text" id="lastName" name="lastname" class="form-control" placeholder="Last name" required="required">
-                                        <label for="lastName">Last name</label>
-                                    </div>
+                            <?php endif;?>
+
+                            <?php if($this->session->flashdata('register_failed')):  ?>
+                                <div class="alert alert-danger" role="alert">
+                                    <?php echo $this->session->flashdata('register_failed');?>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-label-group">
-                                <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required="required">
-                                <label for="inputEmail">Email address</label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-row">
-                                <div class="col-md-6">
-                                    <div class="form-label-group">
-                                        <select id="inputState" name="type" class="form-control">
-                                            <option selected>Select a User type...</option>
-                                            <option>Admin</option>
-                                            <option>Coordinator</option>
-                                            <option>School Admin</option>
-                                            <option>Principal</option>
-                                            <option>Vice Principal</option>
-                                            <option>Head Prefect</option>
-                                            <option>Dep.Head Prefect</option>
-                                            <option>Teacher</option>
-                                            <option>Teacher</option>
-                                            <option>Student</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-label-group">
-                                        <input type="text" name="contactnumber" id="contactnumber" class="form-control" placeholder="Contact Number" required="required">
-                                        <label for="contactnumber">Contact Number</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="form-row">
-                                <div class="col-md-6">
-                                    <div class="form-label-group">
-                                        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
-                                        <label for="inputPassword">Password</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-label-group">
-                                        <input type="password" name="confirmpassword" id="confirmPassword" class="form-control" placeholder="Confirm password" required="required">
-                                        <label for="confirmPassword">Confirm password</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Upload Image</label>
-                                        <div class="input-group">
-                                            <span class="input-group-btn">
-                                                <span class="btn btn-info btn-file">
-                                                    Browse…  <?php echo form_open_multipart('upload/do_upload');?>
-                                                    <input type="file" id="imgInp" name="imageurl">
-                                                </span>
-                                            </span>
-                                            <input type="text" class="form-control" readonly>
+                            <?php endif;?>
+                        <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col-md-6">
+                                        <div class="form-label-group">
+                                            <input type="text" id="firstName" name="firstname" class="form-control" placeholder="First name" required="required" autofocus="autofocus">
+                                            <label for="firstName">First name</label>
                                         </div>
-                                        <img id='img-upload'/>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="form-label-group">
+                                            <input type="text" id="lastName" name="lastname" class="form-control" placeholder="Last name" required="required">
+                                            <label for="lastName">Last name</label>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                    <div class="form-label-group">
+                                        <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required="required">
+                                        <label for="inputEmail">Email address</label>
+                                    </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <div class="form-label-group">
+                                                <select id="inputState" name="type" class="form-control">
+                                                    <option selected>Select an User type...</option>
+                                                    <option>Admin</option>
+                                                    <option>Coordinator</option>
+                                                    <option>School Admin</option>
+                                                    <option>Principal</option>
+                                                    <option>Vice Principal</option>
+                                                    <option>Head Prefect</option>
+                                                    <option>Dep.Head Prefect</option>
+                                                    <option>Teacher</option>
+                                                    <option>Teacher</option>
+                                                    <option>Student</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-label-group">
+                                                <input type="text" name="contactnumber" id="contactnumber" class="form-control" placeholder="Contact Number" required="required">
+                                                <label for="contactnumber">Contact Number</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="form-row">
+                                        <div class="col-md-6">
+                                            <div class="form-label-group">
+                                                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
+                                                <label for="inputPassword">Password</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-label-group">
+                                                <input type="password" name="confirmpassword" id="confirmPassword" class="form-control" placeholder="Confirm password" required="required">
+                                                <label for="confirmPassword">Confirm password</label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary btn-block" type="submit" value="upload">Register User</button>
                         </div>
-                        <button class="btn btn-primary btn-block" type="submit">Register User</button>
+                        <div class="col-md-4">
+                            <div class="col-md-12">
+                                <img src="<?php echo base_url();?>assets/img/user.jpg">
+<!--                                <div class="form-group">-->
+<!--                                    <img id='img-upload' style="margin: 5%" src="--><?php //echo base_url();?><!--assets/img/user.jpg"/>-->
+<!--                                    <div class="input-group">-->
+<!--                                            <span class="input-group-btn">-->
+<!--                                                <span class="btn btn-default btn-file">-->
+<!--                                                    <button class="btn btn-info btn-block" type="submit">Upload Image</button>-->
+<!--                                                    <br>--><?php //echo form_open_multipart('upload/do_upload');?>
+<!--                                                    <input type="file" id="imgInp" name="imageurl">-->
+<!--                                                </span>-->
+<!--                                            </span>-->
+<!--                                        <input style="margin-top: 2%" type="text" class="form-control" readonly value="user.jpg">-->
+<!--                                    </div>-->
+<!---->
+<!--                                </div>-->
+                            </div>
+                        </div>
+                        </div>
                     </form>
+
+                </div>
                 </div>
             </div>
         </div>
@@ -180,7 +199,7 @@ $this->load->view('navbar');
         $(".alert").fadeTo(500, 0).slideUp(500, function(){
             $(this).remove();
         });
-    }, 4000);
+    }, 10000);
 </script>
 <script src="<?php echo base_url();?>assets/assets1/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

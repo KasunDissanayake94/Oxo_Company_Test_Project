@@ -10,31 +10,29 @@ class Upload extends CI_Controller {
 
     public function index()
     {
-        $this->load->view('upload_form', array('error' => ' ' ));
+        $this->load->view('', array('error' => ' ' ));
     }
 
     public function do_upload()
     {
-        $config['upload_path']          = './uploads/profile_images';
+        $config['upload_path']          = './uploads/';
         $config['allowed_types']        = 'gif|jpg|png';
-        $config['max_size']             = 100;
-        $config['max_width']            = 1024;
-        $config['max_height']           = 768;
+        $config['max_size']             = 1000;
+        $config['max_width']            = 2000;
+        $config['max_height']           = 2000;
 
         $this->load->library('upload', $config);
 
-        if ( ! $this->upload->do_upload('userfile'))
+        if ( ! $this->upload->do_upload('imageurl'))
         {
-            $error = array('error' => $this->upload->display_errors());
-
-            $this->load->view('upload_form', $error);
+            $_SESSION['upload_image'] = false;
+            $this->session->set_flashdata('register_failed','Failed to Upload Image...');
+            $this->load->view('userRegistration');
+        }else{
+            $_SESSION['upload_image'] = true;
+            $this->session->set_flashdata('register_success','Good');
+            $this->load->view('');
         }
-        else
-        {
-            $data = array('upload_data' => $this->upload->data());
 
-            $this->load->view('upload_success', $data);
-        }
     }
 }
-?>
