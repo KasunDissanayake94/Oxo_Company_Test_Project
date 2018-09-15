@@ -6,6 +6,8 @@ class adminController extends CI_Controller {
     {
         parent::__construct();
         $this->load->helper(array('form', 'url'));
+        $this->load->model('adminModel');
+        $this->load->library('excel');
     }
 
     public function UserRegistration(){
@@ -126,34 +128,95 @@ class adminController extends CI_Controller {
 
             $this->load->view('viewUser');
 
+        }
+    }
 
+    public function uploadData(){
+
+        if ($this->input->post('submit')) {
+
+            $path = 'uploads/';
+            require_once APPPATH . "/third_party/PHPExcel.php";
+            $config['upload_path'] = $path;
+            $config['allowed_types'] = 'xlsx|xls';
+            $config['remove_spaces'] = TRUE;
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+            if (!$this->upload->do_upload('uploadFile')) {
+                $error = array('error' => $this->upload->display_errors());
+            } else {
+                $data = array('upload_data' => $this->upload->data());
+            }
+            if(empty($error)){
+                if (!empty($data['upload_data']['file_name'])) {
+                    $import_xls_file = $data['upload_data']['file_name'];
+                } else {
+                    $import_xls_file = 0;
+                }
+                $inputFileName = $path . $import_xls_file;
+
+                try {
+                    $inputFileType = PHPExcel_IOFactory::identify($inputFileName);
+                    $objReader = PHPExcel_IOFactory::createReader($inputFileType);
+                    $objPHPExcel = $objReader->load($inputFileName);
+                    $allDataInSheet = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
+                    $flag = true;
+                    $i=0;
+                    foreach ($allDataInSheet as $value) {
+                        if($flag){
+                            $flag =false;
+                            continue;
+                        }
+                        $inserdata[$i]['org_name'] = $value['A'];
+                        $inserdata[$i]['org_code'] = $value['B'];
+                        $inserdata[$i]['gst_no'] = $value['C'];
+                        $inserdata[$i]['org_type'] = $value['D'];
+                        $inserdata[$i]['Address'] = $value['E'];
+                        $i++;
+                    }
+                    $result = $this->import->importdata($inserdata);
+                    if($result){
+                        echo "Imported successfully";
+                    }else{
+                        echo "ERROR !";
+                    }
+
+                } catch (Exception $e) {
+                    die('Error loading file "' . pathinfo($inputFileName, PATHINFO_BASENAME)
+                        . '": ' .$e->getMessage());
+                }
+            }else{
+                echo $error['error'];
+            }
 
 
         }
+        $this->load->view('upload');
     }
+
     public function fetch()
     {
-        $data = $this->excel_import_model->select();
+        $data = $this->adminModel->select();
         $output = '
   <h3 align="center">Total Data - '.$data->num_rows().'</h3>
   <table class="table table-striped table-bordered">
    <tr>
-    <th>Customer Name</th>
-    <th>Address</th>
-    <th>City</th>
-    <th>Postal Code</th>
-    <th>Country</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Type</th>
+    <th>Contact Number</th>
    </tr>
   ';
         foreach($data->result() as $row)
         {
             $output .= '
    <tr>
-    <td>'.$row->CustomerName.'</td>
-    <td>'.$row->Address.'</td>
-    <td>'.$row->City.'</td>
-    <td>'.$row->PostalCode.'</td>
-    <td>'.$row->Country.'</td>
+    <td>'.$row->firstname.'</td>
+    <td>'.$row->lastname.'</td>
+    <td>'.$row->email.'</td>
+    <td>'.$row->type.'</td>
+    <td>'.$row->contact_number.'</td>
    </tr>
    ';
         }
@@ -161,7 +224,39 @@ class adminController extends CI_Controller {
         echo $output;
     }
 
+    public function import()
+    {
+        if (isset($_FILES["file"]["name"])) {
+            $path = $_FILES["file"]["tmp_name"];
+            $object = PHPExcel_IOFactory::load($path);
+            foreach ($object->getWorksheetIterator() as $worksheet) {
+                $highestRow = $worksheet->getHighestRow();
+                $highestColumn = $worksheet->getHighestColumn();
+                for ($row = 2; $row <= $highestRow; $row++) {
+                    $firstname = $worksheet->getCellByColumnAndRow(0, $row)->getValue();
+                    $lastname = $worksheet->getCellByColumnAndRow(1, $row)->getValue();
+                    $email = $worksheet->getCellByColumnAndRow(2, $row)->getValue();
+                    $type = $worksheet->getCellByColumnAndRow(3, $row)->getValue();
+                    $contact_number = $worksheet->getCellByColumnAndRow(4, $row)->getValue();
+                    $data[] = array(
+                        'firstname' => $firstname,
+                        'lastname' => $lastname,
+                        'email' => $email,
+                        'type' => $type,
+                        'contact_number' => $contact_number
+                    );
+                }
+            }
+            $this->adminModel->insert($data);
+            echo 'Data Imported successfully';
+        }
+    }
 
 
 
-}
+
+
+
+
+
+    }

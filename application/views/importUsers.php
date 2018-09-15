@@ -107,7 +107,7 @@ $this->load->view('navbar');
         function load_data()
         {
             $.ajax({
-                url:"<?php echo base_url(); ?>excel_import/fetch",
+                url:"<?php echo base_url(); ?>adminController/fetch",
                 method:"POST",
                 success:function(data){
                     $('#customer_data').html(data);

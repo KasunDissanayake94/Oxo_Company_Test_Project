@@ -44,5 +44,8 @@ class Users extends CI_Controller {
 		$this->session->sess_destroy();
 		redirect('Welcome/index');
 	}
+	public function editProfile(){
+        $this->load->view('edit_user_profile');
+    }
 
 }

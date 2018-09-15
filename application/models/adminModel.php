@@ -1,5 +1,6 @@
 <?php
-
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 class AdminModel extends CI_Model {
     public function register_User($firstname,$lastname,$email,$type,$contact_number,$password,$image_url){
 
@@ -52,6 +53,18 @@ class AdminModel extends CI_Model {
         $this->db->where('id', $id);
         $this->db->update('user_details', $data);
         return ($this->db->affected_rows() != 1) ? false : true;
+    }
+
+    public function select()
+    {
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get('user_details');
+        return $query;
+    }
+
+    public function insert($data)
+    {
+        $this->db->insert_batch('user_details', $data);
     }
 
 
