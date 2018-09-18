@@ -14,16 +14,16 @@ class Users extends CI_Controller {
 
 	public function login(){
 
-			$username = $this->input->post('username');
+			$email = $this->input->post('email');
 			$password = $this->input->post('password');
 
 			$this->load->model('user_model');
-			$user_id = $this->user_model->login_user($username,$password);
+			$user_id = $this->user_model->login_user($email,$password);
 
 			if($user_id){
 				$user_data = array(
 						'user_id' => $user_id,
-						'username' => $username,
+						'email' => $email,
 						'logged_in' => true
 				);
 
@@ -33,7 +33,7 @@ class Users extends CI_Controller {
 			}else{
 
 
-				$this->session->set_flashdata('login_failed','Username or Password is incorrect... Try again..');
+				$this->session->set_flashdata('login_failed','Email or Password is incorrect... Try again..');
 				redirect('Welcome/login');
 			}
 

@@ -155,7 +155,7 @@ $this->load->view('navbar');
                                                 <input type="file" id="imgInp" name="userfile" size="20">
                                                 </span>
                                             </span>
-                                            <input style="margin-top: 2%" type="submit" class="form-control" readonly value="Save Image">
+                                            <input style="margin-top: 2%" id="save_image_button" type="submit" class="form-control" readonly value="Save Image">
                                             </form>
 
                                         </div>
@@ -219,6 +219,21 @@ $this->load->view('navbar');
             $(this).remove();
         });
     }, 10000);
+</script>
+<script>
+    $('#save_image_button').click(function() {
+        $.ajax({
+            url: '<?php echo site_url('your_controller'); ?>',
+            type: 'POST',
+            data: {
+                key: value
+            },
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+            }
+        });
+    });
 </script>
 <script src="<?php echo base_url();?>assets/assets1/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

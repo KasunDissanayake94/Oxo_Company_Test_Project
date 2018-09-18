@@ -87,17 +87,10 @@ $this->load->view('navbar');
                                         <div class="col-md-6">
                                             <div class="form-label-group">
                                                 <select id="inputState" name="type" class="form-control">
-                                                    <option selected>Select an User type...</option>
                                                     <option>Admin</option>
                                                     <option>Coordinator</option>
                                                     <option>School Admin</option>
-                                                    <option>Principal</option>
-                                                    <option>Vice Principal</option>
-                                                    <option>Head Prefect</option>
-                                                    <option>Dep.Head Prefect</option>
-                                                    <option>Teacher</option>
-                                                    <option>Teacher</option>
-                                                    <option>Student</option>
+
                                                 </select>
                                             </div>
                                         </div>

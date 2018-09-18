@@ -36,8 +36,8 @@
             <form action="<?php echo base_url();?>users/login" method="POST">
                 <div class="form-group">
                     <div class="form-label-group">
-                        <input type="text" name="username" id="username" class="form-control" placeholder="Username" required="required" autofocus="autofocus">
-                        <label for="inputEmail">Username</label>
+                        <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required="required" autofocus="autofocus">
+                        <label for="inputEmail">Email address</label>
                     </div>
                 </div>
                 <div class="form-group">

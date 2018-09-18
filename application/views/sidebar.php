@@ -29,6 +29,11 @@
             <span>Import Users </span></a>
     </li>
     <li class="nav-item">
+        <a class="nav-link" href="<?php echo base_url();?>index.php/adminController/allocateSchools">
+            <i class="fas fa-school"></i>
+            <span>Allocate Schools </span></a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link" href="#">
             <i class="fas fa-id-card"></i>
             <span>View Log</span></a>

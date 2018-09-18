@@ -10,8 +10,8 @@
     <!-- Navbar Search -->
     <div class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0" style="color: white">
         <?php
-        if($this->session->userdata('username')){
-            echo "<p>You are logged in as ".$this->session->userdata('username')."<p>";
+        if($this->session->userdata('email')){
+            echo "<p>You are logged in as ".$this->session->userdata('email')."<p>";
 
         }
 

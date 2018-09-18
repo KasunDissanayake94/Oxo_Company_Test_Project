@@ -27,6 +27,10 @@ class adminController extends CI_Controller {
         }
 
     }
+    //Schools Allocation of Admin
+    public function allocateSchools(){
+        $this->load->view('allocateSchools');
+    }
     public  function userDelete(){
         if($this->input->get())
         {
@@ -253,6 +257,8 @@ class adminController extends CI_Controller {
             echo 'Data Imported successfully';
         }
     }
+
+
 
 
 
