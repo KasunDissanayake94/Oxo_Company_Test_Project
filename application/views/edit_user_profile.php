@@ -38,58 +38,67 @@ $this->load->view('navbar');
             <div class="card mb-3">
                 <div class="card-header">
                     <i class="fas fa-chart-area"></i>
-                   Edit Profile</div>
+                    Edit Profile Form</div>
                 <div class="card-body">
-                    <form action="<?php echo base_url();?>adminController/registerUser" method="POST">
+                    <div class="row">
+                        <div class="col-md-8">
+                    <form action="<?php echo base_url();?>users/editUserProfile" method="POST">
 
-                        <?php if($this->session->flashdata('register_success')):  ?>
+                        <?php if($this->session->flashdata('edit_success')):  ?>
                             <div class="alert alert-success" role="alert">
-                                <?php echo $this->session->flashdata('register_success');?>
+                                <?php echo $this->session->flashdata('edit_success');?>
                             </div>
                         <?php endif;?>
 
-                        <?php if($this->session->flashdata('register_failed')):  ?>
+                        <?php if($this->session->flashdata('edit_failed')):  ?>
                             <div class="alert alert-danger" role="alert">
-                                <?php echo $this->session->flashdata('register_failed');?>
+                                <?php echo $this->session->flashdata('edit_failed');?>
                             </div>
                         <?php endif;?>
-                        <div class="row">
-                            <div class="col-md-8">
-                                <div class="form-group">
-                                    <div class="form-row">
-                                        <div class="col-md-6">
-                                            <div class="form-label-group">
-                                                <input type="text" id="firstName" name="firstname" class="form-control" placeholder="First name" required="required" autofocus="autofocus">
-                                                <label for="firstName">First name</label>
+
+                        <?php
+                        /* first we will make sure we have data to display. $users variable is actually the $data['users'] that we sent from the controller to the view... */
+                        foreach ($instant_req as $perreq)
+                        {
+                            echo "
+                                <div class=\"form-group\">
+                                    <div class=\"form-row\">
+                                        <div class=\"col-md-6\">
+                                        
+                                            <div class=\"form-label-group\">
+                                                <input type=\"text\" id=\"firstName\" value='$perreq->firstname' name=\"firstname\" class=\"form-control\" placeholder=\"First name\" required=\"required\" autofocus=\"autofocus\">
+                                                <label for=\"firstName\">First name</label>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-label-group">
-                                                <input type="text" id="lastName" name="lastname" class="form-control" placeholder="Last name" required="required">
-                                                <label for="lastName">Last name</label>
+                                        <input type=\"text\" id=\"id\" name=\"id\" value='$perreq->id' class=\"form-control\" required=\"required\" hidden autofocus=\"autofocus\">
+
+                                        <div class=\"col-md-6\">
+                                            <div class=\"form-label-group\">
+                                                <input type=\"text\" id=\"lastName\" value='$perreq->lastname' name=\"lastname\" class=\"form-control\" placeholder=\"Last name\" required=\"required\">
+                                                <label for=\"lastName\">Last name</label>
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="form-row">
-                                        <div class="col-md-6">
-                                            <div class="form-label-group">
-                                                <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email address" required="required">
-                                                <label for="inputEmail">Email address</label>
+                                <div class=\"form-group\">
+                                    <div class=\"form-row\">
+                                        <div class=\"col-md-6\">
+                                            <div class=\"form-label-group\">
+                                                <input type=\"email\" value='$perreq->email'  id=\"inputEmail\" name=\"email\" class=\"form-control\" placeholder=\"Email address\" required=\"required\">
+                                                <label for=\"inputEmail\">Email address</label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="form-row">
-                                        <div class="col-md-6">
-                                            <div class="form-label-group">
-                                                <select id="inputState" name="type" class="form-control">
-                                                    <option selected>Select an User type...</option>
+                                <div class=\"form-group\">
+                                    <div class=\"form-row\">
+                                        <div class=\"col-md-6\">
+                                            <div class=\"form-label-group\">
+                                                <select id=\"inputState\" name=\"type\"class=\"form-control\">
+                                                    <option>$perreq->type</option>
                                                     <option>Admin</option>
-                                                    <option>Coordinator</option>
+                                                    <option>Coordinator</option>                                                  
                                                     <option>School Admin</option>
                                                     <option>Principal</option>
                                                     <option>Vice Principal</option>
@@ -101,54 +110,64 @@ $this->load->view('navbar');
                                                 </select>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-label-group">
-                                                <input type="text" name="contactnumber" id="contactnumber" class="form-control" placeholder="Contact Number" required="required">
-                                                <label for="contactnumber">Contact Number</label>
+                                        <div class=\"col-md-6\">
+                                            <div class=\"form-label-group\">
+                                                <input type=\"text\" value='$perreq->contact_number' name=\"contactnumber\" id=\"contactnumber\" class=\"form-control\" placeholder=\"Contact Number\" required=\"required\">
+                                                <label for=\"contactnumber\">Contact Number</label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="form-row">
-                                        <div class="col-md-6">
-                                            <div class="form-label-group">
-                                                <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
-                                                <label for="inputPassword">Password</label>
+                                <div class=\"form-group\">
+                                    <div class=\"form-row\">
+                                        <div class=\"col-md-6\">
+                                            <div class=\"form-label-group\">
+                                                <input type=\"password\" name=\"password\" id=\"inputPassword\" class=\"form-control\" placeholder=\"Password\" required=\"required\">
+                                                <label for=\"inputPassword\">Password</label>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
-                                            <div class="form-label-group">
-                                                <input type="password" name="confirmpassword" id="confirmPassword" class="form-control" placeholder="Confirm password" required="required">
-                                                <label for="confirmPassword">Confirm password</label>
+                                        <div class=\"col-md-6\">
+                                            <div class=\"form-label-group\">
+                                                <input type=\"password\" name=\"confirmpassword\" id=\"confirmPassword\" class=\"form-control\" placeholder=\"Confirm password\" required=\"required\">
+                                                <label for=\"confirmPassword\">Confirm password</label>
                                             </div>
                                         </div>
 
                                     </div>
                                 </div>
-                                <button class="btn btn-primary btn-block" type="submit" value="upload">Save Changes</button>
+                                <button class=\"btn btn-primary btn-block\" type=\"submit\" value=\"upload\">Edit User</button>
                             </div>
+                            ";
+
+                        }
+                        ?>
+                    </form>
                             <div class="col-md-4">
                                 <div class="col-md-12">
-                                    <img src="<?php echo base_url();?>assets/img/user.jpg">
-                                    <!--                                <div class="form-group">-->
-                                    <!--                                    <img id='img-upload' style="margin: 5%" src="--><?php //echo base_url();?><!--assets/img/user.jpg"/>-->
-                                    <!--                                    <div class="input-group">-->
-                                    <!--                                            <span class="input-group-btn">-->
-                                    <!--                                                <span class="btn btn-default btn-file">-->
-                                    <!--                                                    <button class="btn btn-info btn-block" type="submit">Upload Image</button>-->
-                                    <!--                                                    <br>--><?php //echo form_open_multipart('upload/do_upload');?>
-                                    <!--                                                    <input type="file" id="imgInp" name="imageurl">-->
-                                    <!--                                                </span>-->
-                                    <!--                                            </span>-->
-                                    <!--                                        <input style="margin-top: 2%" type="text" class="form-control" readonly value="user.jpg">-->
-                                    <!--                                    </div>-->
-                                    <!---->
-                                    <!--                                </div>-->
+                                    <div class="form-group">
+                                        <img id='img-upload' style='margin: 5%' src="<?php echo base_url();?>assets/img/user.jpg">
+                                        <div class="input-group">
+                                            <?php echo form_open_multipart('upload/do_upload');?>
+                                            <span class="input-group-btn">
+                                                <span class="btn btn-default btn-file">
+                                                    <button class="btn btn-info btn-block" type="submit">Change Profile Image</button>
+                                                <br>
+                                                <input type="file" id="imgInp" name="userfile" size="20">
+                                                </span>
+                                            </span>
+                                            <input style="margin-top: 2%" type="submit" class="form-control" readonly value="Save Image">
+                                            </form>
+
+                                        </div>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </form>
+
+                </div>
+            </div>
+
 
                 </div>
             </div>

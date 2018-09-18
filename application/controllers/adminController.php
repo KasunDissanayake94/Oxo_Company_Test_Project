@@ -130,6 +130,7 @@ class adminController extends CI_Controller {
 
         }
     }
+    //Upload Image
 
     public function uploadData(){
 
@@ -194,11 +195,12 @@ class adminController extends CI_Controller {
         $this->load->view('upload');
     }
 
+    //Excel Import
     public function fetch()
     {
         $data = $this->adminModel->select();
         $output = '
-  <h3 align="center">Total Data - '.$data->num_rows().'</h3>
+  <h3 align="center">Total Users - '.$data->num_rows().'</h3>
   <table class="table table-striped table-bordered">
    <tr>
     <th>First Name</th>

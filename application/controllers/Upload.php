@@ -10,7 +10,7 @@ class Upload extends CI_Controller {
 
     public function index()
     {
-        $this->load->view('', array('error' => ' ' ));
+        $this->load->view('upload_form', array('error' => ' ' ));
     }
 
     public function do_upload()
@@ -23,16 +23,18 @@ class Upload extends CI_Controller {
 
         $this->load->library('upload', $config);
 
-        if ( ! $this->upload->do_upload('imageurl'))
+        if ( ! $this->upload->do_upload('userfile'))
         {
-            $_SESSION['upload_image'] = false;
-            $this->session->set_flashdata('register_failed','Failed to Upload Image...');
-            $this->load->view('userRegistration');
-        }else{
-            $_SESSION['upload_image'] = true;
-            $this->session->set_flashdata('register_success','Good');
-            $this->load->view('');
-        }
+            $error = array('error' => $this->upload->display_errors());
 
+            $this->load->view('upload_form', $error);
+        }
+        else
+        {
+            $data = array('upload_data' => $this->upload->data());
+
+            $this->load->view('upload_success', $data);
+        }
     }
 }
+?>
