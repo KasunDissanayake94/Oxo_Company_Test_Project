@@ -11,6 +11,9 @@ class Users extends CI_Controller {
 	public function user_register(){
 		$this->load->view('register_form');
 	}
+	public function changeImage(){
+        $this->load->view('edit_Profile_Image');
+    }
 
 	public function login(){
 

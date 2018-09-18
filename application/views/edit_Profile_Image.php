@@ -29,17 +29,33 @@ $this->load->view('navbar');
                 <li class="breadcrumb-item">
                     <a href="#">Dashboard</a>
                 </li>
-                <li class="breadcrumb-item active">Allocatate Schools</li>
+                <li class="breadcrumb-item active">Edit User Profile</li>
             </ol>
 
 
 
             <!-- Area Chart Example-->
             <div class="card mb-3">
-                <div class="card-header">
-                    <i class="fas fa-chart-area"></i>
-                    School Allocation Form</div>
                 <div class="card-body">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <img id='img-upload' style='margin: 5%' src="<?php echo base_url();?>assets/img/user.jpg">
+                            <div class="input-group">
+                                <?php echo form_open_multipart('upload/do_upload');?>
+                                <span class="input-group-btn">
+                                                <span class="btn btn-default btn-file">
+                                                    <button class="btn btn-info btn-block" type="submit">Change Profile Image</button>
+                                                <br>
+                                                <input type="file" id="imgInp" name="userfile" size="20">
+                                                </span>
+                                            </span>
+                                <input style="margin-top: 2%" type="submit" class="form-control" readonly value="Save Image">
+                                </form>
+
+                            </div>
+
+                        </div>
+                    </div>
 
 
                 </div>

@@ -145,20 +145,13 @@ $this->load->view('navbar');
                             <div class="col-md-4">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <img id='img-upload' style='margin: 5%' src="<?php echo base_url();?>assets/img/user.jpg">
-                                        <div class="input-group">
-                                            <?php echo form_open_multipart('upload/do_upload');?>
-                                            <span class="input-group-btn">
-                                                <span class="btn btn-default btn-file">
-                                                    <button class="btn btn-info btn-block" type="submit">Change Profile Image</button>
-                                                <br>
-                                                <input type="file" id="imgInp" name="userfile" size="20">
-                                                </span>
-                                            </span>
-                                            <input style="margin-top: 2%" id="save_image_button" type="submit" class="form-control" readonly value="Save Image">
-                                            </form>
+                                        <img id='img-upload' src="<?php echo base_url();?>assets/img/user.jpg">
+                                        <br>
+                                        <br>
 
-                                        </div>
+                                        <a class="btn btn-success" style="text-align: center" href="<?php echo base_url();?>users/changeImage">
+                                                <?php if($this->session->userdata('logged_in')):?>Upload Image<?php endif;?></a>
+                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#imageModal">Upload Image</a>
 
                                     </div>
                                 </div>
@@ -211,6 +204,25 @@ $this->load->view('navbar');
     </div>
 </div>
 
+<!-- Change Image Model-->
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Upload Image </h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="<?php echo base_url();?>users/logout"><?php if($this->session->userdata('logged_in')):?>Save Changes<?php endif;?></a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Bootstrap core JavaScript-->
 <script src="<?php echo base_url();?>assets/assets1/vendor/jquery/jquery.min.js"></script>
 <script>
@@ -219,21 +231,6 @@ $this->load->view('navbar');
             $(this).remove();
         });
     }, 10000);
-</script>
-<script>
-    $('#save_image_button').click(function() {
-        $.ajax({
-            url: '<?php echo site_url('your_controller'); ?>',
-            type: 'POST',
-            data: {
-                key: value
-            },
-            dataType: 'json',
-            success: function(data) {
-                console.log(data);
-            }
-        });
-    });
 </script>
 <script src="<?php echo base_url();?>assets/assets1/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
