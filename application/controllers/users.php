@@ -12,7 +12,8 @@ class Users extends CI_Controller {
 		$this->load->view('register_form');
 	}
 	public function changeImage(){
-        $this->load->view('edit_Profile_Image');
+        $image = $this->input->get('image');
+        $this->load->view('edit_Profile_Image',$image);
     }
 
 	public function login(){
@@ -95,7 +96,8 @@ class Users extends CI_Controller {
             $this->load->model('user_model');
             $user_id = $this->user_model->edit_User_Final($id,$firstname,$lastname,$email,$type,$contact_number,$password);
 
-            $this->load->view('viewUser');
+            $this->session->set_flashdata('register_success','Details Successfully Changed');
+            $this->load->view('editUser');
 
         }
     }

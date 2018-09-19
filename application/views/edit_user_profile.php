@@ -142,18 +142,29 @@ $this->load->view('navbar');
                         }
                         ?>
                     </form>
-                            <div class="col-md-4">
+                            <div class="col-md-4 text-center">
                                 <div class="col-md-12">
-                                    <div class="form-group">
-                                        <img id='img-upload' src="<?php echo base_url();?>assets/img/user.jpg">
-                                        <br>
-                                        <br>
+                                    <?php if($this->session->flashdata('image_upload_success')):  ?>
+                                        <div class="alert alert-success" role="alert">
+                                            <?php echo $this->session->flashdata('image_upload_success');?>
+                                        </div>
+                                    <?php endif;?>
 
-                                        <a class="btn btn-success" style="text-align: center" href="<?php echo base_url();?>users/changeImage">
-                                                <?php if($this->session->userdata('logged_in')):?>Upload Image<?php endif;?></a>
-                                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#imageModal">Upload Image</a>
+                                    <?php if($this->session->flashdata('image_upload_failed')):  ?>
+                                        <div class="alert alert-danger" role="alert">
+                                            <?php echo $this->session->flashdata('image_upload_failed');?>
+                                        </div>
+                                    <?php endif;?>
+                                    <form action="<?php echo base_url();?>users/changeImage?image=<?php echo $perreq->image_url?>" method="POST">
+                                    <div class="form-group">
+                                        <img id='img-upload'style="width: 300px;" src="<?php echo base_url();?>assets/img/profile_images/<?php echo $perreq->image_url?>">
+                                        <br>
+                                        <br>
+                                        <button type="submit" class="btn btn-outline-primary">
+                                            Upload Image</button>
 
                                     </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -199,25 +210,6 @@ $this->load->view('navbar');
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                 <a class="btn btn-primary" href="<?php echo base_url();?>users/logout"><?php if($this->session->userdata('logged_in')):?>Logout<?php endif;?></a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Change Image Model-->
-<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Upload Image </h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body"></div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="<?php echo base_url();?>users/logout"><?php if($this->session->userdata('logged_in')):?>Save Changes<?php endif;?></a>
             </div>
         </div>
     </div>
