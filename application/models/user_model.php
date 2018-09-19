@@ -1,15 +1,15 @@
 <?php
 
 class User_model extends CI_Model {
-	public function login_user($email, $password){
+	public function login_user($username, $password){
 
-		$this->db->where('email',$email);
+		$this->db->where('username',$username);
 		$this->db->where('password',$password);
 
-		$result = $this->db->get('users');
+		$result = $this->db->get('user');
 
 		if($result->num_rows()==1){
-			return $result->row(0)->id;
+			return $result->row(0)->uid;
 		}else{
 			return false;
 		}
@@ -17,7 +17,7 @@ class User_model extends CI_Model {
 	//Get the details of logged user to edit pwn profile
     public function edit_Profile($email){
         $this->db->where('email',$email);
-        $this->db->select('id,firstname,lastname,email,type,contact_number,password,image_url');
+        $this->db->select('id,firstname,lastname,email,type,contact_number,password');
         $user_data = $this->db->get('user_details');
         if($user_data->num_rows() > 0)
         {
@@ -40,15 +40,6 @@ class User_model extends CI_Model {
             'password'=>$password,
         );
         $this->db->where('id', $id);
-        $this->db->update('user_details', $data);
-        return ($this->db->affected_rows() != 1) ? false : true;
-    }
-    public function upload_image($file_name,$email){
-        $data = array(
-            'image_url'=>$file_name,
-
-        );
-        $this->db->where('email', $email);
         $this->db->update('user_details', $data);
         return ($this->db->affected_rows() != 1) ? false : true;
     }

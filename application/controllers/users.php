@@ -11,23 +11,19 @@ class Users extends CI_Controller {
 	public function user_register(){
 		$this->load->view('register_form');
 	}
-	public function changeImage(){
-        $image = $this->input->get('image');
-        $this->load->view('edit_Profile_Image',$image);
-    }
 
 	public function login(){
 
-			$email = $this->input->post('email');
+			$username = $this->input->post('username');
 			$password = $this->input->post('password');
 
 			$this->load->model('user_model');
-			$user_id = $this->user_model->login_user($email,$password);
+			$user_id = $this->user_model->login_user($username,$password);
 
 			if($user_id){
 				$user_data = array(
 						'user_id' => $user_id,
-						'email' => $email,
+						'username' => $username,
 						'logged_in' => true
 				);
 
@@ -37,7 +33,7 @@ class Users extends CI_Controller {
 			}else{
 
 
-				$this->session->set_flashdata('login_failed','Email or Password is incorrect... Try again..');
+				$this->session->set_flashdata('login_failed','Username or Password is incorrect... Try again..');
 				redirect('Welcome/login');
 			}
 
@@ -96,8 +92,7 @@ class Users extends CI_Controller {
             $this->load->model('user_model');
             $user_id = $this->user_model->edit_User_Final($id,$firstname,$lastname,$email,$type,$contact_number,$password);
 
-            $this->session->set_flashdata('register_success','Details Successfully Changed');
-            $this->load->view('editUser');
+            $this->load->view('viewUser');
 
         }
     }

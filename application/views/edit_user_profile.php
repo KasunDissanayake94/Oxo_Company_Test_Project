@@ -142,29 +142,25 @@ $this->load->view('navbar');
                         }
                         ?>
                     </form>
-                            <div class="col-md-4 text-center">
+                            <div class="col-md-4">
                                 <div class="col-md-12">
-                                    <?php if($this->session->flashdata('image_upload_success')):  ?>
-                                        <div class="alert alert-success" role="alert">
-                                            <?php echo $this->session->flashdata('image_upload_success');?>
-                                        </div>
-                                    <?php endif;?>
-
-                                    <?php if($this->session->flashdata('image_upload_failed')):  ?>
-                                        <div class="alert alert-danger" role="alert">
-                                            <?php echo $this->session->flashdata('image_upload_failed');?>
-                                        </div>
-                                    <?php endif;?>
-                                    <form action="<?php echo base_url();?>users/changeImage?image=<?php echo $perreq->image_url?>" method="POST">
                                     <div class="form-group">
-                                        <img id='img-upload'style="width: 300px;" src="<?php echo base_url();?>assets/img/profile_images/<?php echo $perreq->image_url?>">
-                                        <br>
-                                        <br>
-                                        <button type="submit" class="btn btn-outline-primary">
-                                            Upload Image</button>
+                                        <img id='img-upload' style='margin: 5%' src="<?php echo base_url();?>assets/img/user.jpg">
+                                        <div class="input-group">
+                                            <?php echo form_open_multipart('upload/do_upload');?>
+                                            <span class="input-group-btn">
+                                                <span class="btn btn-default btn-file">
+                                                    <button class="btn btn-info btn-block" type="submit">Change Profile Image</button>
+                                                <br>
+                                                <input type="file" id="imgInp" name="userfile" size="20">
+                                                </span>
+                                            </span>
+                                            <input style="margin-top: 2%" type="submit" class="form-control" readonly value="Save Image">
+                                            </form>
+
+                                        </div>
 
                                     </div>
-                                    </form>
                                 </div>
                             </div>
                         </div>
